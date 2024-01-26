@@ -25,6 +25,35 @@ public class SyntaxeDeBase {
         Scanner scanner = new Scanner(System.in);
         String name = scanner.next();
         System.out.printf("Bonjour %s!", name);
+
+        Integer age = 69;
+        if (age >= 18) {
+            System.out.println("Vous pouvez voter");
+        } else {
+            System.out.println("Tu ne peux pas voter");
+        }
+
+        switch (age) {
+            case 18:
+                System.out.println("Tu es maintenant un adulte!");
+                break;
+            case 69:
+                System.out.println("Nice");
+                break;
+            default:
+                System.out.println("Allo :)");
+        }
+
+        for (Integer i = 0; i < 10; i++) {
+            System.out.printf("Le nombre est %d%n", i);
+        }
+
+        while (age < 100) {
+            System.out.printf("Vous avez %d ans%n", age);
+            age++;
+        }
+
+
     }
 
 }
