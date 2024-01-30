@@ -77,7 +77,7 @@ public class GameOfLife {
         }
 
         for (int i1 = 0; i1 < tab.length-1; i1++) {
-            for (int i2 = 0; i2 < tab[i2].length-1; i1++) {
+            for (int i2 = 0; i2 < tab[i1].length-1; i2++) {
                 //genere une cellule celon si elle est mort ou pas
                 int[] cellulePresent;
                 if (tab[i1][i2]) { cellulePresent = new int[]{i1,i2,1}; }
