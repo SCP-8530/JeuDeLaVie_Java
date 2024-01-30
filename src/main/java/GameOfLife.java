@@ -58,26 +58,32 @@ public class GameOfLife {
 
     }
 
+    /**
+     * Methode qui gere l'affichage du tableau de jeu
+     * */
     public static void AfficherTableau(boolean[][] tab) {
         for(int i1 = 0; i1 < tab.length; i1++){
             for (int i2 = 0; i2 < tab[i1].length; i2++) {
                 if (tab[i1][i2]) { System.out.print("█");}
-                else {System.out.print(" ");}
+                else {System.out.print(".");}
             }
             System.out.print("\n");
         }
     }
 
+    /**
+     * Methode de preparation de la futur generation des cellules
+     * */
     public static boolean[][] CreerFuturTableau(boolean[][] tab) {
         boolean[][] futurTab = new boolean[tab.length][tab[0].length];
         //bug sur le tableau qui etait nul. Solution trouver : https://www.developpez.net/forums/d326508/java/general-java/api-standards-tierces/collection-stream/debutant-initialiser-booleens-true-tableau/
         //Explication: Creation d'une boucle pour remplir le tableau
         for (int i = 0; i < futurTab.length; i++) {
-            Arrays.fill(tab[i],false);
+            Arrays.fill(futurTab[i],false);
         }
 
-        for (int i1 = 0; i1 < tab.length-1; i1++) {
-            for (int i2 = 0; i2 < tab[i1].length-1; i2++) {
+        for (int i1 = 0; i1 < tab.length; i1++) {
+            for (int i2 = 0; i2 < tab[i1].length; i2++) {
                 //genere une cellule celon si elle est mort ou pas
                 int[] cellulePresent;
                 if (tab[i1][i2]) { cellulePresent = new int[]{i1,i2,1}; }
@@ -95,6 +101,9 @@ public class GameOfLife {
         return futurTab;
     }
 
+    /**
+     * Methode qui gere la suirvivabiliter d'une cellule
+     * */
     public static int[] ChangeEtat(int[] cellule) {
         int Y = cellule[0];
         int X = cellule[1];
@@ -108,11 +117,10 @@ public class GameOfLife {
             if (Y != TableauPresent.length-1) if (TableauPresent[Y+1][X-1]) nombre++;
         }
 
-
         if (Y != 0) if (TableauPresent[Y-1][X]) nombre++;
         if (Y != TableauPresent.length-1) if (TableauPresent[Y+1][X]) nombre++;
 
-        if (X != TableauPresent[Y].length) {
+        if (X != TableauPresent[Y].length-1) {
             if (Y != 0) if (TableauPresent[Y-1][X+1]) nombre++;
             if (TableauPresent[Y][X+1]) nombre++;
             if (Y != TableauPresent.length-1) if (TableauPresent[Y+1][X+1]) nombre++;
